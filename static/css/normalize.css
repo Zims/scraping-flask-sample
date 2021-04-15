@@ -1,0 +1,32 @@
+.center {
+  padding: 20px 0;
+  border: 2px solid rgb(161, 179, 197);
+  text-align: center;
+  margin: 50px;
+}
+
+.button {
+  background-color: rgb(161, 179, 197);
+  color: #ffffff;
+  border-color: rgb(161, 179, 197);
+  padding: 20px;
+}
+
+.rules{
+  text-align: left;
+  padding-left: 200px;
+}
+.table{
+  align-self: center;
+  margin: auto;
+}
+
+.navibar{
+  padding: 500;
+}
+
+
+.selectit{
+  text-align: end;
+  padding-right: 30px;
+}

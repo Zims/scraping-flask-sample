@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="./static/css/normalize.css">
+
+    </head>
+    <body>
+        <div class="center">
+            <h4 class="selectit">Choose site to scrape  ☝️</h4>
+            <!-- <a class="button" href="input">Scrape</a> -->
+            <br><br>
+            <h2>Get a file with top items of the search<br><br><br></h2>
+        </div>
+    </body>
+</html>
+{% endblock %}

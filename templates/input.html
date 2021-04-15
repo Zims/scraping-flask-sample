@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="./static/css/normalize.css">
+    </head>
+    <body>
+        <div class="center">
+            <h2>Instructions<br><br></h2>
+            <div class="rules">
+                <p>1. Go to: <a href="https://www.yellowpages.com" target="_blank">yellowpages</a></p>
+                <p>2. Make a search with businesses in a location</p>
+                <p>3. Copy the search address and paste it in the form below (URL)</p>
+                <p>4. Chosa a name for the output file</p>
+            </div>
+            <form action = "http://localhost:5000/result" method = "POST">
+               <p><input type = "text" name = "Name" /><br>URL</p>
+               <p><input type = "text" name = "Filename" /><br>Name Of the file(your choice)</p>
+               <p><input class="button" type = "submit" value = "Scrape" /></p>
+            </form>
+        </div>
+    </body>
+</html>
+
+{% endblock %}
