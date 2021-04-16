@@ -18,6 +18,10 @@ admin = Blueprint('admin', __name__, static_folder='static')
 def index():
     return render_template('/index.html')
 
+@app.route('/ss')
+def ss():
+   return render_template('ss_input.html')
+
 
 @app.route('/input')
 def input():
@@ -46,4 +50,3 @@ def otput_folder(json_name):
 
 if __name__ == '__main__':
    app.run()
-
