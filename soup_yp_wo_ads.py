@@ -4,6 +4,10 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 from datetime import datetime
+import csv
+import pandas as pd
+import numpy as np
+  
 
 file_name = ''
 json_name = ''
@@ -48,7 +52,8 @@ def output_file(*args):
     get_result()
     top_30 = list(get_result())
     now = datetime.now()
-    current_time = now.strftime("%H:%M_%m-%y")
+    current_time = now.strftime("%y-%m-%d-%H-%M")
+# %H:%M_%m-%y
     global file_name
     if "/" in file_name:
         file_name = args[1].replace('/', '_')
@@ -56,10 +61,25 @@ def output_file(*args):
         file_name = file_name.replace(' ', '_')
     # print('DONE')
 
-    with open(f'output/{file_name}-{current_time}.json', 'w') as json_file:
+# writting json
+    with open(f'output/{current_time}_{file_name}.json', 'w') as json_file:
         global json_name
-        json_name = f'{file_name}-{current_time}.json'
-        # json_name = f'pp.json'
-        
-        print(json_name)
+        json_name = f'{current_time}_{file_name}.json'
         json.dump(top_30, json_file)
+
+# writting csv
+    with open(f"output/{current_time}_{file_name}.csv","w",newline="") as f:  # python 2: open("output.csv","wb")
+        title = "title,address,street_address,number".split(",") # quick hack
+        cw = csv.DictWriter(f,title,delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        cw.writeheader()
+        cw.writerows(top_30)
+
+# writting excel
+# Reading the csv file
+    df_new = pd.read_csv(f'output/{current_time}_{file_name}.csv')
+    
+    # saving xlsx file
+    GFG = pd.ExcelWriter(f'output/{current_time}_{file_name}.xlsx')
+    df_new.to_excel(GFG, index = False)
+    
+    GFG.save()
