@@ -2,8 +2,15 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import time
+from datetime import datetime
 
 
+time_now = datetime.now()
+format = "%m-%d-%Y"
+
+time_now = time.strftime(format)
+print(time_now)
+ss_filename = f"output/ss{time_now}.csv"
 def scrape_ss():
     def parse_page(page=1):
         for row in rows:
@@ -35,7 +42,7 @@ def scrape_ss():
     headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
     d_list = []
 
-    for page in range(1, 5):
+    for page in range(1, 2):
         url = f"https://www.ss.com/lv/real-estate/flats/riga/centre/sell/page{page}.html"
         response = requests.get(url, headers=headers)
         content = response.text
@@ -50,6 +57,7 @@ def scrape_ss():
 
 
     df = pd.DataFrame(d_list)
-    df.dropna().to_csv("output.csv")
-    df.dropna().to_excel("output.xlsx")
+
+    df.dropna().to_csv(ss_filename)
+    df.dropna().to_excel("output/ss.xlsx")
     print("Done!")

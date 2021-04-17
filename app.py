@@ -4,7 +4,7 @@ from flask.helpers import send_file
 import soup_yp_wo_ads
 import remove_files
 import os
-from scrapers.ss_property import scrape_ss
+from scrapers.ss_property import scrape_ss, ss_filename
 
 app = Flask(__name__)
 
@@ -28,7 +28,15 @@ def ss():
 @app.route('/parse_ss')
 def parse_ss():
    scrape_ss()
-   return render_template('/ss_parsed.html')
+   return render_template('/ss_parsed.html', file_name=ss_filename)
+
+@app.route('/output')
+def make_tree():
+    # for f in os.listdir("/Users/zims/Documents/Python/2021/scraping_flask_sample/output/"):
+    #     print(f)
+    # content = os.listdir("/Users/zims/Documents/Python/2021/scraping_flask_sample/output/")
+    # return render_template("output.html", content=content) 
+    return render_template('output.html')
 
 
 @app.route('/input')
