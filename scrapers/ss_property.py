@@ -6,11 +6,12 @@ from datetime import datetime
 
 
 time_now = datetime.now()
-format = "%m-%d-%Y"
+format = "%Y-%m-%d-%T"
 
 time_now = time.strftime(format)
 print(time_now)
-ss_filename = f"output/ss{time_now}.csv"
+
+ss_filename = f"output/ss{time_now}"
 def scrape_ss():
     def parse_page(page=1):
         for row in rows:
@@ -43,13 +44,13 @@ def scrape_ss():
     d_list = []
 
     for page in range(1, 2):
-        url = f"https://www.ss.com/lv/real-estate/flats/riga/centre/sell/page{page}.html"
+        url = f"https://www.ss.com/lv/real-estate/flats/riga/agenskalns/sell/page{page}.html"
         response = requests.get(url, headers=headers)
         content = response.text
         soup = BeautifulSoup(content, "html.parser")
         table = soup.select("table:nth-child(3)")
         rows = table[0].find_all("tr")
-        time.sleep(2)
+        # time.sleep(2)
         print(page)
         parse_page(page)
 
@@ -58,6 +59,6 @@ def scrape_ss():
 
     df = pd.DataFrame(d_list)
 
-    df.dropna().to_csv(ss_filename)
-    df.dropna().to_excel("output/ss.xlsx")
+    df.dropna().to_csv(f"{ss_filename}.csv")
+    df.dropna().to_excel(f"{ss_filename}.xlsx")
     print("Done!")

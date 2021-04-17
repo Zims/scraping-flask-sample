@@ -1,5 +1,26 @@
 <!-- <a href="/output">Click here to view Folder</a> -->
 {% extends "base.html" %}
 {% block content %}
-<a class="button" href="{{ file_name }}">Right click and click "save as..." to save the json</a>
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="./static/css/normalize.css">
+
+    </head>
+    <body>
+        <div class="center">
+            <a class="button" href="{{ file_name }}.csv">Atvērt csv</a>
+            <br><br><br>
+            <a class="button" href="{{ file_name }}.xlsx">Atvērt excel</a>
+        </div>
+    </body>
+
 {% endblock %}
