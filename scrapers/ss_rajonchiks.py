@@ -12,7 +12,10 @@ time_now = time.strftime(format)
 print(time_now)
 
 ss_filename = f"output/ss{time_now}"
-def scrape_ss():
+
+
+def scrape_ss(*args):
+    rajons = args[0]
     def parse_page(page=1):
         for row in rows:
             d = {}
@@ -22,16 +25,12 @@ def scrape_ss():
                 element_list.append(i.text)
             try:
                 d["address"] = element_list[0]
-                try:
-                    d["istabas"] = int(element_list[1])
-                except:
-                    d["istabas"] = "Nav norādīts"
-
-                d["platiba"] = int(element_list[2])
+                d["istabas"] = element_list[1]
+                d["platiba"] = element_list[2]
                 d["stavs"] = element_list[3]
                 d["tips"] = element_list[4]
-                d["cena_m2"] = int(element_list[5].replace(" €", "").replace(",", ""))
-                d["cena(eiro)"] = int(element_list[-1].replace("  €", "").replace(",", ""))
+                d["cena_m2"] = element_list[5].replace(" €", "")
+                d["cena(eiro)"] = element_list[-1].replace("  €", "")
             except:
                 d["address"] = None
                 d["istabas"] = None
@@ -42,13 +41,12 @@ def scrape_ss():
                 d["cena(eiro)"] = None
             d_list.append(d)
 
-
-
-    headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
+    headers = {
+        'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
     d_list = []
 
     for page in range(1, 2):
-        url = f"https://www.ss.com/lv/real-estate/flats/riga/agenskalns/sell/page{page}.html"
+        url = f"https://www.ss.com/lv/real-estate/flats/riga/{rajons}/sell/page{page}.html"
         response = requests.get(url, headers=headers)
         content = response.text
         soup = BeautifulSoup(content, "html.parser")
@@ -57,9 +55,6 @@ def scrape_ss():
         # time.sleep(2)
         print(page)
         parse_page(page)
-
-
-
 
     df = pd.DataFrame(d_list)
 

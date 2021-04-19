@@ -5,6 +5,7 @@ import soup_yp_wo_ads
 import remove_files
 import os
 from scrapers.ss_property import scrape_ss, ss_filename
+# from scrapers.ss_rajonchiks import scrape_ss, ss_filename
 
 app = Flask(__name__)
 
@@ -29,6 +30,19 @@ def ss():
 def parse_ss():
    scrape_ss()
    return render_template('/ss_parsed.html', file_name=ss_filename)
+
+# working but something is wrong
+
+# @app.route('/parse_ss', methods=['POST', 'GET'])
+# def parse_ss():
+#     if request.method == 'POST':
+#         result = request.form
+#     # how to parse the flask dict:
+#     # https://stackoverflow.com/questions/23205577/python-flask-immutablemultidict
+#         chosen_region = request.form.getlist('Name')
+#         # file_name_chosen = request.form.getlist('Filename')
+#         scrape_ss(chosen_region)
+#         return render_template('/ss_parsed.html', file_name=ss_filename)
 
 @app.route('/output')
 def make_tree():
