@@ -12,6 +12,15 @@
   padding: 20px;
 }
 
+.region-button {
+  background-color: rgb(169, 197, 161);
+  text-align: left;
+  color: #110c0c;
+  margin-left: 20px;
+  border-color: rgb(161, 197, 163);
+  padding: 5px;
+}
+
 .rules{
   text-align: left;
   padding-left: 200px;

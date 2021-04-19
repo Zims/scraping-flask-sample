@@ -7,12 +7,18 @@ from datetime import datetime
 
 time_now = datetime.now()
 format = "%Y-%m-%d-%T"
-
 time_now = time.strftime(format)
-print(time_now)
-
 ss_filename = f"output/ss{time_now}"
-def scrape_ss():
+
+def refresh_time():
+    time_now = datetime.now()
+    format = "%Y-%m-%d-%T"
+    time_now = time.strftime(format)
+    global ss_filename
+    ss_filename = f"output/ss{time_now}"
+    return ss_filename
+
+def scrape_ss(chosen_region):
     def parse_page(page=1):
         for row in rows:
             d = {}
@@ -48,7 +54,8 @@ def scrape_ss():
     d_list = []
 
     for page in range(1, 2):
-        url = f"https://www.ss.com/lv/real-estate/flats/riga/agenskalns/sell/page{page}.html"
+        url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
+        print(url)
         response = requests.get(url, headers=headers)
         content = response.text
         soup = BeautifulSoup(content, "html.parser")
@@ -58,11 +65,11 @@ def scrape_ss():
         print(page)
         parse_page(page)
 
-
+    print(refresh_time())
 
 
     df = pd.DataFrame(d_list)
 
-    df.dropna().to_csv(f"{ss_filename}.csv")
+    # df.dropna().to_csv(f"{ss_filename}.csv")
     df.dropna().to_excel(f"{ss_filename}.xlsx")
     print("Done!")

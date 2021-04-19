@@ -14,20 +14,18 @@
     </head>
     <body>
         <div class="center">
-            <h2>Instructions<br><br></h2>
+            <h2>Izvēlies reģionu. Klikšķini un <b>gaidi apmēram 10s</b> kamēr veido excel failu ar 100+ jaunākajiem sludinājumiem<br><br></h2>
 
-            <form action = "/parse_ss" method = "GET">
-               <!-- <p><input type = "text" name = "Name" /><br>URL</p>
-               <p><input type = "text" name = "Filename" /><br>Name Of the file(your choice)</p> -->
-               <p><input class="button" type = "submit" value = "Guu" /></p>
-            </form>
-        <a href="/parse_ss">Visit W3Schools.com!</a>
 
-        <!-- <form action = "/parse_ss" method = "POST">
-            <p><input type = "text" name = "Name" /><br>URL</p>
-            <!-- <p><input type = "text" name = "Filename" /><br>Name Of the file(your choice)</p> -->
-            <!-- <p><input class="button" type = "submit" value = "Guu" /></p>
-         </form> --> -->
+        <form action = "/parse_ss" method = "POST">
+            <!-- <p><input type = "button" name = "Name" /><br>Centrs</p> -->
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "centre" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "agenskalns" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "imanta" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "kengarags" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "purvciems" /> </p>
+         </form>  
+
         </div>
     </body>
 </html>
