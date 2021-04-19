@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="./static/css/normalize.css">
+    </head>
+    <body>
+        <div class="center">
+            <h2>Izvēlies reģionu. Klikšķini un <b>gaidi apmēram 10s</b> kamēr veido excel failu ar 100+ jaunākajiem sludinājumiem<br><br></h2>
+
+
+        <form action = "/parse_ss" method = "POST">
+            <!-- <p><input type = "button" name = "Name" /><br>Centrs</p> -->
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "centre" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "agenskalns" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "imanta" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "kengarags" /> </p>
+            <p></p><input class="region-button"  name = "Name" type = "submit" value = "purvciems" /> </p>
+         </form>  
+
+        </div>
+    </body>
+</html>
+
+{% endblock %}
