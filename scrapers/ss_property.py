@@ -8,14 +8,14 @@ from datetime import datetime
 time_now = datetime.now()
 format = "%Y-%m-%d-%T"
 time_now = time.strftime(format)
-ss_filename = f"output/ss{time_now}"
+ss_filename = f"output/{time_now}"
 
 def refresh_time():
     time_now = datetime.now()
     format = "%Y-%m-%d-%T"
     time_now = time.strftime(format)
     global ss_filename
-    ss_filename = f"output/ss{time_now}"
+    ss_filename = f"output/{time_now}"
     return ss_filename
 
 def scrape_ss(chosen_region):
@@ -38,6 +38,7 @@ def scrape_ss(chosen_region):
                 d["tips"] = element_list[4]
                 d["cena_m2"] = int(element_list[5].replace(" €", "").replace(",", ""))
                 d["cena(eiro)"] = int(element_list[-1].replace("  €", "").replace(",", ""))
+                d["Vieta"] = chosen_region[0]
             except:
                 d["address"] = None
                 d["istabas"] = None
@@ -47,13 +48,13 @@ def scrape_ss(chosen_region):
                 d["cena_m2"] = None
                 d["cena(eiro)"] = None
             d_list.append(d)
-
-
+        refresh_time()
 
     headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
+
     d_list = []
 
-    for page in range(1, 5):
+    for page in range(1, 4):
         url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
         print(url)
         response = requests.get(url, headers=headers)
@@ -61,14 +62,11 @@ def scrape_ss(chosen_region):
         soup = BeautifulSoup(content, "html.parser")
         table = soup.select("table:nth-child(3)")
         rows = table[0].find_all("tr")
-        # time.sleep(2)
-        print(page)
+        time.sleep(2)
         parse_page(page)
 
-    print(refresh_time())
-
-
     df = pd.DataFrame(d_list)
+    # vieta = df["Vieta"][5]
 
     # df.dropna().to_csv(f"{ss_filename}.csv")
     df.dropna().to_excel(f"{ss_filename}.xlsx")
