@@ -54,7 +54,7 @@ def scrape_ss(chosen_region):
 
     d_list = []
 
-    for page in range(1, 4):
+    for page in range(1, 6):
         url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
         print(url)
         response = requests.get(url, headers=headers)
