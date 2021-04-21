@@ -56,7 +56,7 @@ def dir_listing(req_path):
     abs_path = os.path.join(BASE_DIR, req_path)
     # Show directory contents
     files = os.listdir(abs_path)
-    return render_template('files.html', files=files)
+    return render_template('files.html', files=files, pwd=pwd)
 
 
 @app.route('/input')
