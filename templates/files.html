@@ -1,6 +1,6 @@
 <ul>
    {{ files.sort(reverse=True) }}
-   {{ pwd }}
+   <!-- {{ pwd }} -->
    {% for file in files %}
    <li>
        <a href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
