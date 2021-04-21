@@ -11,10 +11,19 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href="./static/css/normalize.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9XXNWSLQL"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-W9XXNWSLQL');
+        </script>
     </head>
     <body>
         <div class="center">
-            <h2>Izvēlies reģionu. Klikšķini un<br> <b>uzgaidi apmēram 10s</b> <br>kamēr tiek veidots excel fails ar 100+ jaunākajiem sludinājumiem<br><br></h2>
+            <h2>Izvēlies reģionu. Klikšķini un<br> <b>uzgaidi apmēram 15s</b> <br>kamēr tiek veidots excel fails ar 100+ jaunākajiem sludinājumiem<br><br></h2>
 
 
         <form action = "/parse_ss" method = "POST">

@@ -54,7 +54,7 @@ def scrape_ss(chosen_region):
 
     d_list = []
 
-    for page in range(1, 6):
+    for page in range(1, 5):
         url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
         print(url)
         response = requests.get(url, headers=headers)
@@ -69,5 +69,5 @@ def scrape_ss(chosen_region):
     # vieta = df["Vieta"][5]
 
     # df.dropna().to_csv(f"{ss_filename}.csv")
-    df.dropna().to_excel(f"{ss_filename}.xlsx")
+    df.dropna().to_excel(f"{ss_filename}_{chosen_region[0]}.xlsx")
     print("Done!")
