@@ -1,10 +1,10 @@
-<html>
-   <head>
-      <script type = "text/javascript" 
-         src = "{{ url_for('static', filename = 'hello.js') }}" ></script>
-   </head>
-   
-   <body>
-      <input type = "button" onclick = "sayHello()" value = "Say Hell" />
-   </body>
-</html>
+<ul>
+   {{ files.sort(reverse=True) }}
+   {% for file in files %}
+   <li>
+       <a href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
+           {{ ('' if request.path != '/' else '') + file}}
+       </a>
+   </li>
+   {% endfor %}
+</ul>

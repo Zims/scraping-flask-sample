@@ -10,6 +10,8 @@ from scrapers.ss_property import scrape_ss, refresh_time
 app = Flask(__name__)
 
 UPLOAD_DIRECTORY = "/"
+pwd_partial = os.popen('pwd').readline()
+pwd = f"{pwd_partial.strip()}/output"
 
 # f = open("roofer.json", "r")
 # data = f.read()
@@ -45,13 +47,16 @@ def parse_ss():
         scrape_ss(chosen_region)
         return render_template('/ss_parsed.html', file_name=refresh_time())
 
-@app.route('/output')
-def make_tree():
-    # for f in os.listdir("/Users/zims/Documents/Python/2021/scraping_flask_sample/output/"):
-    #     print(f)
-    # content = os.listdir("/Users/zims/Documents/Python/2021/scraping_flask_sample/output/")
-    # return render_template("output.html", content=content) 
-    return render_template('output.html')
+#  I can browse the folder now
+@app.route('/output', defaults={'req_path': ''})
+@app.route('/<path:req_path>')
+def dir_listing(req_path):
+    BASE_DIR = pwd
+        # Joining the base and the requested path
+    abs_path = os.path.join(BASE_DIR, req_path)
+    # Show directory contents
+    files = os.listdir(abs_path)
+    return render_template('files.html', files=files)
 
 
 @app.route('/input')
