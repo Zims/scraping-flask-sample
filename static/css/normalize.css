@@ -5,6 +5,11 @@
   margin: 50px;
 }
 
+.rajons {
+  padding: 20px 0;
+  text-align: left;
+}
+
 .button {
   background-color: rgb(161, 179, 197);
   color: #ffffff;
@@ -13,11 +18,10 @@
 }
 
 .region-button {
-  background-color: rgb(169, 197, 161);
+  background-color: rgb(161, 179, 197);
   text-align: left;
   color: #110c0c;
-  margin-left: 20px;
-  border-color: rgb(161, 197, 163);
+  margin-left: 90px;
   padding: 5px;
 }
 
