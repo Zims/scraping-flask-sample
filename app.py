@@ -21,8 +21,12 @@ admin = Blueprint('admin', __name__, static_folder='static')
 @app.route("/", methods=['GET'])
 def index():
     # return render_template('/index.html')
-    return render_template('ss_input.html')
+    return render_template('index.html')
 
+@app.route("/ss", methods=['GET'])
+def ss_page():
+    # return render_template('/index.html')
+    return render_template('ss_input.html')
 
 @app.route('/ss')
 def ss():

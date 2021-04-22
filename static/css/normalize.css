@@ -1,8 +1,28 @@
 .center {
   padding: 20px 0;
-  border: 2px solid rgb(161, 179, 197);
   text-align: center;
   margin: 50px;
+}
+
+.flex-container {
+  padding-top: 50px;
+  /* We first create a flex layout context */
+  display: flex;
+  /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  flex-flow: row wrap;
+  /* Then we define how is distributed the remaining space */
+  justify-content: space-around;
+}
+
+.btn.btn-primary{
+background-color:hsl(216, 76%, 40%);
+border: 3px solid white;
+
 }
 
 .rajons {
@@ -11,18 +31,28 @@
 }
 
 .button {
-  background-color: rgb(161, 179, 197);
-  color: #ffffff;
-  border-color: rgb(161, 179, 197);
+  background-color: rgb(25, 87, 180);
+  color: #fff;
+border: 3px solid white;
   padding: 20px;
+  margin: 50px;
+}
+
+.outputs {
+  padding: 10px;
+  font-size: 18px;
 }
 
 .region-button {
-  background-color: rgb(161, 179, 197);
-  text-align: left;
-  color: #110c0c;
+  background-color:rgb(25, 87, 180);
+  border: 3px solid white;
+  font-family: arial;
+  color: #fff;
+  width: 120px;
+  text-align: center;
   margin-left: 90px;
-  padding: 5px;
+  margin-right: 90px;
+  padding: 20px;
 }
 
 .rules{

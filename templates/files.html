@@ -1,11 +1,22 @@
-<ul>
-   {{ files.sort(reverse=True) }}
-   <!-- {{ pwd }} -->
-   {% for file in files %}
-   <li>
-       <a href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
-           {{ ('' if request.path != '/' else '') + file}}
-       </a>
-   </li>
-   {% endfor %}
-</ul>
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="./static/css/normalize.css">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+    <ul>
+    {{ files.sort(reverse=True) }}
+    <!-- {{ pwd }} -->
+    {% for file in files %}
+        <li>
+
+            <a class="outputs" href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
+                {{ ('' if request.path != '/' else '') + file}}
+            </a>
+        </li>
+        <br>
+    {% endfor %}
+    </ul>
+    <br><br><br>
+    <a  class="region-button" href="/ss">Atpakaļ</a>
+
+</html>
