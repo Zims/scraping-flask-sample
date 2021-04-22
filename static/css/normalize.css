@@ -1,7 +1,19 @@
+.navbar.navbar-expand-lg {
+  background-color: #219ebc
+}
+
 .center {
   padding: 20px 0;
   text-align: center;
   margin: 50px;
+}
+
+body {
+  background-color: #8ecae6;
+}
+
+.card {
+  background-color: #ffb703
 }
 
 .flex-container {
@@ -15,12 +27,13 @@
    * flex-wrap: wrap;
    */
   flex-flow: row wrap;
+  padding: 30px;
   /* Then we define how is distributed the remaining space */
   justify-content: space-around;
 }
 
 .btn.btn-primary{
-background-color:hsl(216, 76%, 40%);
+background-color:#219ebc;
 border: 3px solid white;
 
 }
@@ -44,14 +57,13 @@ border: 3px solid white;
 }
 
 .region-button {
-  background-color:rgb(25, 87, 180);
+  background-color:#219ebc;
   border: 3px solid white;
   font-family: arial;
   color: #fff;
   width: 120px;
   text-align: center;
-  margin-left: 90px;
-  margin-right: 90px;
+
   padding: 20px;
 }
 
@@ -72,4 +84,8 @@ border: 3px solid white;
 .selectit{
   text-align: end;
   padding-right: 30px;
+}
+
+a {
+  color: #023047
 }

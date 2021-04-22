@@ -1,8 +1,13 @@
+
+
 <!DOCTYPE html>
+
     <head>
         <link rel="stylesheet" href="./static/css/normalize.css">
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        
     </head>
+    <div class="flex-container">
     <ul>
     {{ files.sort(reverse=True) }}
     <!-- {{ pwd }} -->
@@ -12,10 +17,12 @@
             <a class="outputs" href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
                 {{ ('' if request.path != '/' else '') + file}}
             </a>
+            
         </li>
         <br>
     {% endfor %}
     </ul>
+    </div>
     <br><br><br>
     <a  class="region-button" href="/ss">Atpakaļ</a>
 
