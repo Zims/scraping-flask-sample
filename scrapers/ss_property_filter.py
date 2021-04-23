@@ -66,15 +66,14 @@ def scrape_ss(chosen_region):
         parse_page(page)
 
     df = pd.DataFrame(d_list)
-    # print(d_list)
-    # vieta = df["Vieta"][5]
+    print(d_list)
 
     # df.dropna().to_csv(f"{ss_filename}.csv")
-    # df.dropna().to_excel(f"{ss_filename}_{chosen_region[0]}.xlsx")
+    df.to_excel(f"{ss_filename}_{chosen_region[0]}.xlsx")
 
         # import pandas as pd
     # Create a Pandas Excel writer using XlsxWriter as the engine.
-    writer = pd.ExcelWriter(f"{ss_filename}_{chosen_region[0]}.xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter('pandas_autofilter.xlsx', engine='xlsxwriter')
 
     # Convert the dataframe to an XlsxWriter Excel object. We also turn off the
     # index column at the left of the output dataframe.
@@ -95,4 +94,8 @@ def scrape_ss(chosen_region):
 
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()
+
+
     print("Done!")
+
+scrape_ss(['centre'])
