@@ -2,10 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import time
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 
-time_now = datetime.now()
+
+time_now = datetime.now(timezone(timedelta(hours=+3)))
 format = "%Y-%m-%d-%T"
 time_now = time.strftime(format)
 ss_filename = f"output/{time_now}"
