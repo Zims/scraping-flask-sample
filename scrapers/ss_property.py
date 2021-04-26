@@ -53,17 +53,28 @@ def scrape_ss(chosen_region):
     headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
 
     d_list = []
-
-    for page in range(1, 5):
-        url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
-        print(url)
-        response = requests.get(url, headers=headers)
-        content = response.text
-        soup = BeautifulSoup(content, "html.parser")
-        table = soup.select("table:nth-child(3)")
-        rows = table[0].find_all("tr")
-        time.sleep(2)
-        parse_page(page)
+    if chosen_region[0] == "all":
+        for page in range(1, 11):
+            url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
+            print(url)
+            response = requests.get(url, headers=headers)
+            content = response.text
+            soup = BeautifulSoup(content, "html.parser")
+            table = soup.select("table:nth-child(3)")
+            rows = table[0].find_all("tr")
+            time.sleep(2)
+            parse_page(page)
+    else:
+        for page in range(1, 5):
+            url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
+            print(url)
+            response = requests.get(url, headers=headers)
+            content = response.text
+            soup = BeautifulSoup(content, "html.parser")
+            table = soup.select("table:nth-child(3)")
+            rows = table[0].find_all("tr")
+            time.sleep(2)
+            parse_page(page)
 
     df = pd.DataFrame(d_list)
     # print(d_list)
