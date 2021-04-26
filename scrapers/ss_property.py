@@ -11,7 +11,7 @@ time_now = time.strftime(format)
 ss_filename = f"output/{time_now}"
 
 def refresh_time():
-    time_now = datetime.now()
+    time_now = datetime.now(timezone(timedelta(hours=+3)))
     format = "%Y-%m-%d-%T"
     time_now = time.strftime(format)
     global ss_filename
