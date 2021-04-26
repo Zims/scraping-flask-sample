@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
     <head>
@@ -7,7 +6,11 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         
     </head>
+    <body>
+        <a  class="flex-container region-button" href="/ss">Atpakaļ</a>
+
     <div class="flex-container">
+
     <ul>
     {{ files.sort(reverse=True) }}
     <!-- {{ pwd }} -->
@@ -24,6 +27,6 @@
     </ul>
     </div>
     <br><br><br>
-    <a  class="region-button" href="/ss">Atpakaļ</a>
+    </body>
 
 </html>
