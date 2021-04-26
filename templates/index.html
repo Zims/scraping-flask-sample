@@ -16,12 +16,36 @@
 
     </head>
     <body>
-        <div class="center">
-            <h4 class="selectit">Choose site to scrape  ☝️</h4>
-            <!-- <a class="button" href="input">Scrape</a> -->
-            <br><br>
-            <h2>Get a file with top items of the search<br><br><br></h2>
-        </div>
+        <div class="flex-container">
+            <!-- Content here -->
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ url_for('static', filename='ss_logo.png') }}" alt="Card image ss.com">
+            <div class="card-body">
+              <h5 class="card-title">ss.com</h5>
+              <p class="card-text">Saņemt jaunākos sludinājumus par dzīvokļiem</p>
+              <a href="/ss" class="btn btn-primary">Aiziet!</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          </div>
     </body>
 </html>
 {% endblock %}

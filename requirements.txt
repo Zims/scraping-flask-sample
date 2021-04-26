@@ -53,4 +53,5 @@ urllib3==1.25.11
 uvicorn==0.12.2
 w3lib==1.22.0
 Werkzeug==1.0.1
+XlsxWriter==1.4.0
 zope.interface==5.2.0
