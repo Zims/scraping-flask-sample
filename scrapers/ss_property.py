@@ -3,20 +3,22 @@ import requests
 import pandas as pd
 import time
 from datetime import datetime, timezone, timedelta
+import pytz
 
 
-time_now = datetime.now(timezone(timedelta(hours=+3)))
+tz=pytz.timezone("Europe/Riga")
+time_now = datetime.now(tz)
 format = "%Y-%m-%d-%T"
-time_now = time.strftime(format)
+time_now = time_now.strftime(format)
 ss_filename = f"output/{time_now}"
 
 def refresh_time():
-    time_now = datetime.now(timezone(timedelta(hours=+3)))
+    tz=pytz.timezone("Europe/Riga")
+    time_now = datetime.now(tz)
     format = "%Y-%m-%d-%T"
-    time_now = time.strftime(format)
+    time_now = time_now.strftime(format)
     global ss_filename
     ss_filename = f"output/{time_now}"
-    return ss_filename
 
 def scrape_ss(chosen_region):
     def parse_page(page=1):
