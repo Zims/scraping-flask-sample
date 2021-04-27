@@ -18,6 +18,21 @@ soup = BeautifulSoup(content, "html.parser")
 table = soup.find("div", {"id": "list-container"})
 list_item = table.find_all("li", {"class": "new result regular"})
 print(len(list_item))
+
+for i in list_item:
+    address = i.find("a", {"class": "addressLink"}).find("span").text.split(",")[0]
+    price = int(i.find("div", {"class": "price"}).find("div").text.replace(" EUR", "").replace(" ", "").strip())
+    istabas = int(i.find("div", {"class": "column"}).find("ol").find_all("li")[1].find("strong").text)
+    platiba = float(i.find("div", {"class": "column"}).find("ol").find_all("li")[0].find("strong").text.split(" ")[0])
+    stavs = i.find("div", {"class": "column"}).find("ol").find_all("li")[2].find("strong").text
+    if i.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span") == None:
+        promo = "Nav"
+    else:
+        promo = i.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span").text
+
+        
+    print(f'***{promo}')
+
 # print(table)
 # rows = table[0].find_all("tr")
 
