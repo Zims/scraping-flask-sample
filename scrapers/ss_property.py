@@ -67,7 +67,7 @@ def scrape_ss(chosen_region):
             time.sleep(2)
             parse_page(page)
     else:
-        for page in range(1, 5):
+        for page in range(1, 2):
             url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
             print(url)
             response = requests.get(url, headers=headers)
@@ -87,7 +87,7 @@ def scrape_ss(chosen_region):
 
         # import pandas as pd
     # Create a Pandas Excel writer using XlsxWriter as the engine.
-    writer = pd.ExcelWriter(f"{ss_filename}_{chosen_region[0]}.xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter(f"{ss_filename}_ss_{chosen_region[0]}.xlsx", engine='xlsxwriter')
 
     # Convert the dataframe to an XlsxWriter Excel object. We also turn off the
     # index column at the left of the output dataframe.
