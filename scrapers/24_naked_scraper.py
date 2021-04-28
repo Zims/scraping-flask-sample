@@ -2,6 +2,23 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import time
+from datetime import datetime, timezone, timedelta
+import pytz
+
+
+tz=pytz.timezone("Europe/Riga")
+time_now = datetime.now(tz)
+format = "%Y-%m-%d-%T"
+time_now = time_now.strftime(format)
+ss_filename = f"output/{time_now}"
+
+def refresh_time():
+    tz=pytz.timezone("Europe/Riga")
+    time_now = datetime.now(tz)
+    format = "%Y-%m-%d-%T"
+    time_now = time_now.strftime(format)
+    global ss_filename
+    ss_filename = f"output/{time_now}"
 
 headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
 
@@ -51,19 +68,10 @@ def pagination_city24():
         parse_page_city24(list_item)
 
 
-# url = f"https://www.city24.lv/lv/saraksts?fr=0"
-# response = requests.get(url, headers=headers)
-# content = response.text
-# soup = BeautifulSoup(content, "html.parser")
-# table = soup.find("div", {"id": "list-container"})
-# list_item = table.find_all("li", {"class": "new result regular"})
-
 pagination_city24()
 
 # create file
 df = pd.DataFrame(d_list)
-# quick test write
-# df.dropna().to_excel(f"test_01.xlsx")
 
 # real filtered file
 # import pandas as pd
