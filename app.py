@@ -6,6 +6,7 @@ import remove_files
 from functools import wraps
 import os
 from scrapers.ss_property import scrape_ss, refresh_time
+from scrapers.city24_scraper import pagination_city24, refresh_time_24
 # from scrapers.ss_rajonchiks import scrape_ss, ss_filename
 
 app = Flask(__name__)
@@ -41,6 +42,11 @@ def index():
 def ss():
     return render_template('ss_input.html')
 
+@app.route('/city24')
+@auth_required
+def city24():
+    return render_template('city24_input.html')
+
 
 @app.route('/parse_ss', methods=['POST', 'GET'])
 @auth_required
@@ -53,6 +59,14 @@ def parse_ss():
         scrape_ss(chosen_region)
         return render_template('/parsed.html', file_name=refresh_time())
 
+
+@app.route('/parse_city24', methods=['POST', 'GET'])
+@auth_required
+def parse_city24():
+    if request.method == 'POST':
+        
+        pagination_city24()
+        return render_template('/parsed.html', file_name=refresh_time_24())
 
 #  I can browse the folder now
 @app.route('/output', defaults={'req_path': ''})
