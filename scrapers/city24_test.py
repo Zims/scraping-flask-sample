@@ -9,14 +9,15 @@ tz=pytz.timezone("Europe/Riga")
 time_now = datetime.now(tz)
 format = "%Y-%m-%d-%T"
 time_now = time_now.strftime(format)
-time_now = time_now.replace(":", ".")
+ss_filename = f"output/{time_now}"
 
 def refresh_time_24():
     tz=pytz.timezone("Europe/Riga")
     time_now = datetime.now(tz)
     format = "%Y-%m-%d-%T"
     time_now = time_now.strftime(format)
-    return time_now.replace(":", ".")
+    return time_now
+
 
 
 def parse_city24_scraper():
@@ -75,9 +76,7 @@ def parse_city24_scraper():
     # import pandas as pd
     # Create a Pandas Excel writer using XlsxWriter as the engine.
 
-    writer = pd.ExcelWriter(f"bob.xlsx", engine='xlsxwriter')
     writer = pd.ExcelWriter(f"output/{refresh_time_24()}_city24.xlsx", engine='xlsxwriter')
-
 
     # Convert the dataframe to an XlsxWriter Excel object. We also turn off the
     # index column at the left of the output dataframe.

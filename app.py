@@ -6,7 +6,7 @@ import remove_files
 from functools import wraps
 import os
 from scrapers.ss_property import scrape_ss, refresh_time
-from scrapers.city24_scraper import pagination_city24, refresh_time_24
+from scrapers.city24_scraper import parse_city24_scraper, refresh_time_24
 # from scrapers.ss_rajonchiks import scrape_ss, ss_filename
 
 app = Flask(__name__)
@@ -65,13 +65,14 @@ def parse_ss():
 def parse_city24():
     if request.method == 'POST':
         
-        pagination_city24()
+        parse_city24_scraper()
         return render_template('/parsed.html', file_name=refresh_time_24())
 
 #  I can browse the folder now
 @app.route('/output', defaults={'req_path': ''})
 @app.route('/<path:req_path>')
 @auth_required
+
 def dir_listing(req_path):
     BASE_DIR = pwd
         # Joining the base and the requested path
@@ -79,7 +80,6 @@ def dir_listing(req_path):
     # Show directory contents
     files = os.listdir(abs_path)
     return render_template('files.html', files=files, pwd=pwd)
-
 
 @app.route('/input')
 @auth_required

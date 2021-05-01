@@ -61,6 +61,7 @@ def scrape_ss(chosen_region):
             print(url)
             response = requests.get(url, headers=headers)
             content = response.text
+            
             soup = BeautifulSoup(content, "html.parser")
             table = soup.select("table:nth-child(3)")
             rows = table[0].find_all("tr")
