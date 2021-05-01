@@ -9,7 +9,7 @@ tz=pytz.timezone("Europe/Riga")
 time_now = datetime.now(tz)
 format = "%Y-%m-%d-%T"
 time_now = time_now.strftime(format)
-time_now = time_now.replace(":", ".")
+time_now = time_now
 
 def refresh_time_24():
     tz=pytz.timezone("Europe/Riga")
@@ -52,7 +52,7 @@ def parse_city24_scraper():
     d_list = []
 
 
-    for page in range(0, 16):
+    for page in range(0, 8):
         url = f"https://www.city24.lv/lv/saraksts?fr={page}"
         print(f"Processing page nr: {page} ...")
         print(url)
