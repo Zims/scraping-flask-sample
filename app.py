@@ -94,6 +94,7 @@ def input():
 
 def result():
     # return render_template("result.html",result = result)
+    
     if request.method == 'POST':
         result = request.form
     # how to parse the flask dict:
