@@ -16,7 +16,7 @@ def refresh_time_24():
     time_now = datetime.now(tz)
     format = "%Y-%m-%d-%T"
     time_now = time_now.strftime(format)
-    return time_now.replace(":", ".")
+    return time_now
 
 
 def parse_city24_scraper():
@@ -52,7 +52,7 @@ def parse_city24_scraper():
     d_list = []
 
 
-    for page in range(0, 2):
+    for page in range(0, 16):
         url = f"https://www.city24.lv/lv/saraksts?fr={page}"
         print(f"Processing page nr: {page} ...")
         print(url)
@@ -64,7 +64,7 @@ def parse_city24_scraper():
         table = soup.find("div", {"id": "list-container"})
         rows = table.find_all("li", {"class": "new result regular"})
 
-        time.sleep(2)
+        time.sleep(1)
         parse_page_city24(page)
 
 
@@ -75,7 +75,6 @@ def parse_city24_scraper():
     # import pandas as pd
     # Create a Pandas Excel writer using XlsxWriter as the engine.
 
-    writer = pd.ExcelWriter(f"bob.xlsx", engine='xlsxwriter')
     writer = pd.ExcelWriter(f"output/{refresh_time_24()}_city24.xlsx", engine='xlsxwriter')
 
 
@@ -98,4 +97,5 @@ def parse_city24_scraper():
 
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()
-print("Done!")
+
+# print("Done!")
