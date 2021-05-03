@@ -99,3 +99,4 @@ def parse_city24_scraper():
     writer.save()
 
 # print("Done!")
+parse_city24_scraper()

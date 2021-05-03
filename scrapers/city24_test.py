@@ -5,21 +5,6 @@ import time
 from datetime import datetime, timezone, timedelta
 import pytz
 
-tz=pytz.timezone("Europe/Riga")
-time_now = datetime.now(tz)
-format = "%Y-%m-%d-%T"
-time_now = time_now.strftime(format)
-ss_filename = f"output/{time_now}"
-
-def refresh_time_24():
-    tz=pytz.timezone("Europe/Riga")
-    time_now = datetime.now(tz)
-    format = "%Y-%m-%d-%T"
-    time_now = time_now.strftime(format)
-    return time_now
-
-
-
 def parse_city24_scraper():
     def parse_page_city24(page=0):
         for row in rows:
@@ -46,7 +31,6 @@ def parse_city24_scraper():
                 d["price"] = None
                 d["vieta"] = None
             d_list.append(d)
-        refresh_time_24()
 
     headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
 
@@ -76,7 +60,7 @@ def parse_city24_scraper():
     # import pandas as pd
     # Create a Pandas Excel writer using XlsxWriter as the engine.
 
-    writer = pd.ExcelWriter(f"output/{refresh_time_24()}_city24.xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter(f"output/_city24.xlsx", engine='xlsxwriter')
 
     # Convert the dataframe to an XlsxWriter Excel object. We also turn off the
     # index column at the left of the output dataframe.
