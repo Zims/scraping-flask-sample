@@ -6,7 +6,6 @@ import remove_files
 from functools import wraps
 import os
 from scrapers.ss_property import scrape_ss, refresh_time
-# from scrapers.ss_rajonchiks import scrape_ss, ss_filename
 
 app = Flask(__name__)
 
