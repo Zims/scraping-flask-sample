@@ -3,20 +3,55 @@ import requests
 import pandas as pd
 import time
 from datetime import datetime, timezone, timedelta
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+import time
+from datetime import datetime, timezone, timedelta
+import pytz
+
+# city 24 ir paargaajis uz js
+# vajag selenium
+
+# headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
+# url = "https://m.city24.lv/real-estate-search/apartments-for-sale/R%C4%ABga-%C4%80genskalns/date=all_time/id=25875-city/tc=1,1"
 
 
-time_now = datetime.now(timezone(timedelta(hours=+3)))
+# resp = requests.get(url, headers=headers)
+# content = resp.content
+# # print(content)
+
+# soup = BeautifulSoup(content, "html.parser")
+# table = soup.find("div", attrs={"class": "results__objects"})
+# print(soup)
+# rows = table.find_all("li", {"class": "new result regular"})
+
+# time_now = datetime.now(timezone(timedelta(hours=+3)))
+# format = "%Y-%m-%d-%T"
+# time_now = time.strftime(format)
+# ss_filename = f"output/{time_now}"
+
+# def refresh_time():
+#     time_now = datetime.now(timezone(timedelta(hours=+3)))
+#     format = "%Y-%m-%d-%T"
+#     time_now = time.strftime(format)
+#     global ss_filename
+#     ss_filename = f"output/{time_now}"
+#     return ss_filename
+
+tz=pytz.timezone("Europe/Riga")
+time_now = datetime.now(tz)
 format = "%Y-%m-%d-%T"
-time_now = time.strftime(format)
+time_now = time_now.strftime(format)
 ss_filename = f"output/{time_now}"
 
 def refresh_time():
-    time_now = datetime.now(timezone(timedelta(hours=+3)))
+    tz=pytz.timezone("Europe/Riga")
+    time_now = datetime.now(tz)
     format = "%Y-%m-%d-%T"
-    time_now = time.strftime(format)
+    time_now = time_now.strftime(format)
     global ss_filename
     ss_filename = f"output/{time_now}"
-    return ss_filename
 
 def scrape_ss(chosen_region):
     def parse_page(page=1):
