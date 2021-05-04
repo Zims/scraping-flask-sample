@@ -9,6 +9,11 @@
   border: 1px solid
 }
 
+#load {
+  display: none;
+}
+
+
 body {
   background-color: #8ecae6;
 }
@@ -91,3 +96,6 @@ border: 3px solid white;
 a {
   color: #023047
 }
+
+#spinner { visibility:hidden; } 
+body.busy .spinner { visibility:visible !important; }
