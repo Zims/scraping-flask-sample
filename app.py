@@ -6,6 +6,9 @@ import remove_files
 from functools import wraps
 import os
 from scrapers.ss_property import scrape_ss, refresh_time
+from  scrapers.city24_scraper import parse_city24_scraper, refresh_time_24
+
+
 
 app = Flask(__name__)
 
@@ -39,10 +42,16 @@ def ss_page():
     # return render_template('/index.html')
     return render_template('ss_input.html')
 
-@app.route('/ss')
+@app.route('/city24')
 @auth_required
-def ss():
-    return render_template('ss_input.html')
+def c24():
+    return render_template('city24_input.html')
+
+@app.route("/parse_city24")
+@auth_required
+def parse_city24():
+    parse_city24_scraper()
+    return render_template("/ss_parsed.html")
 
 
 # @app.route('/parse_ss')
@@ -54,7 +63,6 @@ def ss():
 
 @app.route('/parse_ss', methods=['POST', 'GET'])
 @auth_required
-
 def parse_ss():
     if request.method == 'POST':
         result = request.form
