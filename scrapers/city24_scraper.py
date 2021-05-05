@@ -25,24 +25,42 @@ def parse_city24_scraper():
             d = {}
             try:
                 d["address"] = row.find("a", {"class": "addressLink"}).find("span").text.split(",")[0]
-                d["istabas"] = int(row.find("div", {"class": "column"}).find("ol").find_all("li")[1].find("strong").text)
-                d["platiba"] = float(row.find("div", {"class": "column"}).find("ol").find_all("li")[0].find("strong").text.split(" ")[0])
-                d["stavs"] = row.find("div", {"class": "column"}).find("ol").find_all("li")[2].find("strong").text
-                d["promo"] = row.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span").text
-                
-                d["price_m2"] = float(row.find("div", {"class": "price_sqrm"}).text.replace(" ", "").replace("EUR/m²", "").replace(",", "."))
-                d["price"] = int(row.find("div", {"class": "price"}).find("div").text.replace(" EUR", "").replace(" ", "").strip())
-                
-                # Ir ok jo 24 neljauj izveeleeties vietu
-                d["vieta"] = row.find("a", {"class": "addressLink"}).find("span").text.split(",")[1]
             except:
                 d["address"] = None
+
+            try:
+                d["istabas"] = int(row.find("div", {"class": "column"}).find("ol").find_all("li")[1].find("strong").text)
+            except:
                 d["istabas"] = None
+
+            try:
+                d["platiba"] = float(row.find("div", {"class": "column"}).find("ol").find_all("li")[0].find("strong").text.split(" ")[0])
+            except:
                 d["platiba"] = None
+
+            try:
+                d["stavs"] = row.find("div", {"class": "column"}).find("ol").find_all("li")[2].find("strong").text
+            except:
                 d["stavs"] = None
+
+            try:
+                d["promo"] = row.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span").text
+            except:
                 d["promo"] = None
+
+            try:
+                d["price_m2"] = float(row.find("div", {"class": "price_sqrm"}).text.replace(" ", "").replace("EUR/m²", "").replace(",", "."))
+            except:
                 d["price_m2"] = None
+
+            try:
+                d["price"] = int(row.find("div", {"class": "price"}).find("div").text.replace(" EUR", "").replace(" ", "").strip())
+            except:
                 d["price"] = None
+
+            try:
+                d["vieta"] = row.find("a", {"class": "addressLink"}).find("span").text.split(",")[1]
+            except:
                 d["vieta"] = None
             d_list.append(d)
         refresh_time_24()
@@ -80,8 +98,8 @@ def parse_city24_scraper():
 
     # Convert the dataframe to an XlsxWriter Excel object. We also turn off the
     # index column at the left of the output dataframe.
-    df.dropna().to_excel(writer, sheet_name='Sludinajumi')
-
+    df.to_excel(writer, sheet_name='Sludinajumi')
+# .dropna()
     # Get the xlsxwriter workbook and worksheet objects.
     workbook  = writer.book
     worksheet = writer.sheets['Sludinajumi']
