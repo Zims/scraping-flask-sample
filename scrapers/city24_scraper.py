@@ -43,10 +43,6 @@ def parse_city24_scraper():
             except:
                 d["stavs"] = None
 
-            try:
-                d["promo"] = row.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span").text
-            except:
-                d["promo"] = None
 
             try:
                 d["price_m2"] = float(row.find("div", {"class": "price_sqrm"}).text.replace(" ", "").replace("EUR/m²", "").replace(",", "."))
@@ -62,6 +58,15 @@ def parse_city24_scraper():
                 d["vieta"] = row.find("a", {"class": "addressLink"}).find("span").text.split(",")[1]
             except:
                 d["vieta"] = None
+            
+            try:
+                d["links"] = row.find("a", href=True)["href"]
+            except:
+                d["links"] = None
+            # try:
+            #     d["promo"] = row.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span").text
+            # except:
+            #     d["promo"] = None
             d_list.append(d)
         refresh_time_24()
 
@@ -70,7 +75,7 @@ def parse_city24_scraper():
     d_list = []
 
 
-    for page in range(0, 9):
+    for page in range(0, 2):
         url = f"https://www.city24.lv/lv/saraksts?fr={page}"
         print(f"Processing page nr: {page} ...")
         print(url)
@@ -82,7 +87,7 @@ def parse_city24_scraper():
         table = soup.find("div", {"id": "list-container"})
         rows = table.find_all("li", {"class": "new result regular"})
 
-        time.sleep(1)
+        time.sleep(0.5)
         parse_page_city24(page)
 
 
