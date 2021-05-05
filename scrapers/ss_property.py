@@ -55,6 +55,7 @@ def refresh_time():
 
 def scrape_ss(chosen_region):
     def parse_page(page=1):
+        base_ss = 'https://www.ss.com'
         for row in rows:
             d = {}
             elements = row.find_all("td", {"class": "msga2-o pp6"})
@@ -73,6 +74,11 @@ def scrape_ss(chosen_region):
                 d["tips"] = element_list[4]
                 d["cena_m2"] = int(element_list[5].replace(" €", "").replace(",", ""))
                 d["cena(eiro)"] = int(element_list[-1].replace("  €", "").replace(",", ""))
+                try:
+                    temp_url = row.find("a", href=True)["href"]
+                    d['links'] = f'{base_ss}{temp_url}'
+                except:
+                    d["links"] = None
                 d["Vieta"] = chosen_region[0]
             except:
                 d["address"] = None
@@ -88,6 +94,7 @@ def scrape_ss(chosen_region):
     headers = {'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'}
 
     d_list = []
+    print(chosen_region)
     if chosen_region[0] == "all":
         for page in range(1, 11):
             url = f"https://www.ss.com/lv/real-estate/flats/riga/{chosen_region[0]}/sell/page{page}.html"
