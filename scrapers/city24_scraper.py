@@ -52,7 +52,7 @@ def parse_city24_scraper():
     d_list = []
 
 
-    for page in range(0, 8):
+    for page in range(0, 9):
         url = f"https://www.city24.lv/lv/saraksts?fr={page}"
         print(f"Processing page nr: {page} ...")
         print(url)
