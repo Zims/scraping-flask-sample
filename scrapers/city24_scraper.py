@@ -55,14 +55,16 @@ def parse_city24_scraper():
                 d["price"] = None
 
             try:
+                d["links"] = row.find("a", href=True)["href"]
+            except:
+                d["links"] = None
+
+            try:
                 d["vieta"] = row.find("a", {"class": "addressLink"}).find("span").text.split(",")[1]
             except:
                 d["vieta"] = None
             
-            try:
-                d["links"] = row.find("a", href=True)["href"]
-            except:
-                d["links"] = None
+
             # try:
             #     d["promo"] = row.find_all("div", {"class": "column"})[1].find("div", {"class": "promo"}).find("span").text
             # except:
