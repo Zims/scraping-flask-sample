@@ -96,7 +96,6 @@ def dir_listing(req_path):
     abs_path = os.path.join(BASE_DIR, req_path)
     # Show directory contents
     files = os.listdir(abs_path)
-    print(files)
     return render_template('files.html', files=files, pwd=pwd)
 
 
@@ -132,4 +131,4 @@ def otput_folder(json_name):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

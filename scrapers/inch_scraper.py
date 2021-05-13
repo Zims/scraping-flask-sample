@@ -58,18 +58,18 @@ def parse_inch_scraper():
         except:
             d["istabas"] = "Nav"
         try:
-            d["platība"] = i[9]
+            d["platiba"] = i[9]
         except:
-            d["platība"] = "Nav"
+            d["platiba"] = "Nav"
         try:
-            d["stāvs"] = f"{i[11]}/{i[12]}"
+            d["stavs"] = f"{i[11]}/{i[12]}"
         except:
-            d["stāvs"] = "Nav"
+            d["stavs"] = "Nav"
 
         d["tips"] = "Nav"
 
         try:
-            d["cena_m2"] = round(i[-3] / i[9], 2)
+            d["cena_m2"] = round(i[-3] / i[9], 0)
         except:
             d["cena_m2"] = "Nav"
         try:
@@ -118,7 +118,7 @@ def parse_inch_scraper():
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()
 
-    print("Done!")
+    print("Inch run Done!")
 
 
 # parse_inch_scraper()
