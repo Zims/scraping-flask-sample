@@ -96,7 +96,7 @@ def parse_inch_scraper():
         # import pandas as pd
         # Create a Pandas Excel writer using XlsxWriter as the engine.
 
-    writer = pd.ExcelWriter(f"{refresh_time_inch()}inch.xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter(f"output/{refresh_time_inch()}_inch.xlsx", engine='xlsxwriter')
 
     # Convert the dataframe to an XlsxWriter Excel object. We also turn off the
     # index column at the left of the output dataframe.
@@ -118,7 +118,7 @@ def parse_inch_scraper():
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()
 
-    # print("Done!")
+    print("Done!")
 
 
 # parse_inch_scraper()
