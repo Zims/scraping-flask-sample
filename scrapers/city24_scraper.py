@@ -76,8 +76,8 @@ def parse_city24_scraper():
 
     d_list = []
 
-
-    for page in range(0, 9):
+# TODO set range to (0, 9)
+    for page in range(0, 1):
         url = f"https://www.city24.lv/lv/saraksts?fr={page}"
         print(f"Processing page nr: {page} ...")
         print(url)
@@ -86,11 +86,18 @@ def parse_city24_scraper():
         content = response.text
 
         soup = BeautifulSoup(content, "html.parser")
-        table = soup.find("div", {"id": "list-container"})
-        rows = table.find_all("li", {"class": "new result regular"})
+        print(content)
+        # write content to file
+        with open(f"city24_scraper_{page}.html", "w") as f:
+            f.write(content)
+            
+        # table = soup.find("div", {"id": "list-container"})
+        # rows = table.find_all("li", {"class": "new result regular"})
 
         time.sleep(0.5)
-        parse_page_city24(page)
+
+# TODO uncoment next line
+        # parse_page_city24(page)
 
 
     # create file
