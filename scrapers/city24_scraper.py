@@ -78,7 +78,7 @@ def parse_city24_scraper():
 
 # TODO set range to (0, 9)
     for page in range(0, 1):
-        url = f"https://www.city24.lv/lv/saraksts?fr={page}"
+        url = f"https://www.city24.lv/real-estate-search/apartments-for-sale/R%C4%ABga-%C4%80genskalns/id=25875-city/pg={page}"
         print(f"Processing page nr: {page} ...")
         print(url)
 

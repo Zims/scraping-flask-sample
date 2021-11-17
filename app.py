@@ -31,38 +31,38 @@ def auth_required(f):
 
 
 @app.route("/", methods=['GET'])
-@auth_required
+# @auth_required
 def index():
     return render_template('index.html')
 
 
 @app.route("/ss", methods=['GET'])
-@auth_required
+# @auth_required
 def ss_page():
     # return render_template('/index.html')
     return render_template('ss_input.html')
 
 
 @app.route('/city24')
-@auth_required
+# @auth_required
 def c24():
     return render_template('city24_input.html')\
 
 
 @app.route('/inch')
-@auth_required
+# @auth_required
 def inch_home():
     return render_template('inch_input.html')
 
 
 @app.route("/parse_city24")
-@auth_required
+# @auth_required
 def parse_city24():
     parse_city24_scraper()
     return render_template("/ss_parsed.html")
 
 @app.route("/parse_inch")
-@auth_required
+# @auth_required
 def parse_inch():
     parse_inch_scraper()
     return render_template("/ss_parsed.html")
@@ -74,7 +74,7 @@ def parse_inch():
 # working but something is wrong
 
 @app.route('/parse_ss', methods=['POST', 'GET'])
-@auth_required
+# @auth_required
 def parse_ss():
     if request.method == 'POST':
         result = request.form
@@ -89,7 +89,7 @@ def parse_ss():
 #  I can browse the folder now
 @app.route('/output', defaults={'req_path': ''})
 @app.route('/<path:req_path>')
-@auth_required
+# @auth_required
 def dir_listing(req_path):
     BASE_DIR = pwd
     # Joining the base and the requested path
@@ -100,13 +100,13 @@ def dir_listing(req_path):
 
 
 @app.route('/input')
-@auth_required
+# @auth_required
 def input():
     return render_template('input.html')
 
 
 @app.route('/result', methods=['POST', 'GET'])
-@auth_required
+# @auth_required
 def result():
     # return render_template("result.html",result = result)
 
@@ -125,7 +125,7 @@ def result():
 
 
 @app.route('/output/<json_name>', methods=['POST', 'GET'])
-@auth_required
+# @auth_required
 def otput_folder(json_name):
     return send_from_directory('./output', f'{json_name}')
 
